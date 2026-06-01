@@ -11,7 +11,7 @@ export class EmailService {
   }
 
   async sendVerificationEmail(email: string, token: string) {
-    const appUrl = this.configService.get('APP_URL');
+    const appUrl = this.configService.get<string>('APP_URL');
     const verificationUrl = `${appUrl}/api/auth/verify-email?token=${token}`;
 
     await this.resend.emails.send({
@@ -29,7 +29,7 @@ export class EmailService {
   }
 
   async sendPasswordResetEmail(email: string, token: string) {
-    const appUrl = this.configService.get('APP_URL');
+    const appUrl = this.configService.get<string>('APP_URL');
     const resetUrl = `${appUrl}/api/auth/reset-password?token=${token}`;
 
     await this.resend.emails.send({
