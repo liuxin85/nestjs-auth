@@ -80,7 +80,7 @@ export class AuthService {
     this.setRefreshTokenCookie(res, tokens.refreshToken);
 
     return {
-      message: 'Email verfied successfully. You are no logged in',
+      message: 'Email verfied successfully. You are now logged in',
       accessToken: tokens.accessToken,
       user: {
         id: user.id,
