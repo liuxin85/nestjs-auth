@@ -7,11 +7,16 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiTags,
+  PartialType,
+} from '@nestjs/swagger';
 import { TasksService } from './tasks.service';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import type { User } from 'src/db/schema';
-import { CreateTaskDto } from './dto/create-task.dto';
+import { CreateTaskDto, UpdateTaskDto } from './dto/create-task.dto';
 
 @ApiTags('Tasks')
 @ApiBearerAuth()
@@ -36,12 +41,12 @@ export class TasksController {
   update(
     @CurrentUser() user: User,
     @Param('id') id: string,
-    @Body() dto: Partial<CreateTaskDto>,
+    @Body() dto: UpdateTaskDto,
   ) {
     return this.tasksService.update(id, user.id, dto);
   }
 
-  @Delete('id')
+  @Delete(':id')
   @ApiOperation({ summary: 'Delete a task' })
   remove(@CurrentUser() user: User, @Param('id') id: string) {
     return this.tasksService.delete(id, user.id);

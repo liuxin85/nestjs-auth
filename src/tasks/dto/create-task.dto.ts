@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, PartialType } from '@nestjs/swagger';
 
 export class CreateTaskDto {
   @ApiProperty({ example: 'Build auth system' })
@@ -15,3 +15,5 @@ export class CreateTaskDto {
   @IsOptional()
   description: string;
 }
+
+export class UpdateTaskDto extends PartialType(CreateTaskDto) {}
