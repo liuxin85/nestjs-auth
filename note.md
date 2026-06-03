@@ -12,3 +12,9 @@ pnpm add -D @types/bcrypt @types/cookie-parser drizzle-kit dotenv
 
 
 node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+
+
+
+nest g mo tasks
+nest g co tasks
+nest g s tasks
